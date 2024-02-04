@@ -23,10 +23,10 @@ services:
       context: .
       dockerfile: requirements/mariadb/Dockerfile
       args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
-        DB_ROOT: ${DB_ROOT}
+        MYSQL_NAME: ${MYSQL_NAME}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_NAME: ${MYSQL_NAME}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     container_name: mariadb
     ports:
       - "3306:3306"
@@ -41,9 +41,9 @@ services:
       context: .
       dockerfile: requirements/wordpress/Dockerfile
       args:
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASS: ${DB_PASS}
+        MYSQL_NAME: ${MYSQL_NAME}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_NAME: ${MYSQL_NAME}
     container_name: wordpress
     depends_on:
       - mariadb
