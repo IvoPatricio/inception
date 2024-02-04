@@ -3,12 +3,12 @@ env_path = /home/ifreire-/.env
 
 all:
 	@printf "Launch configuration ${name}...\n"
-	@bash srcs/requirements/wordpress/tools/make_dir.sh
+	@bash srcs/requirements/wordpress/tools/make_data.sh
 	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} up -d
 
 build:
 	@printf "Building configuration ${name}...\n"
-	@bash srcs/requirements/wordpress/tools/make_dir.sh
+	@bash srcs/requirements/wordpress/tools/make_data.sh
 	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} -d --build
 
 down:
