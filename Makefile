@@ -6,12 +6,10 @@ COLOR_YELLOW = \033[1;33m
 
 all:
 	@printf "$(COLOR_YELLOW)\nRunning make all$(COLOR_RESET)\n"
-	@bash srcs/requirements/wordpress/tools/make_data.sh
 	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} up -d
 
 build:
 	@printf "$(COLOR_YELLOW)\nRunning build$(COLOR_RESET)\n"
-	@bash srcs/requirements/wordpress/tools/make_data.sh
 	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} -d --build
 
 down:
