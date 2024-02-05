@@ -24,8 +24,9 @@ RUN mkdir /var/run/mysqld; \
 
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
+#Allows container to use port 3306
 EXPOSE 3306
 
+#Runs the MySQL(database management) server process as the "mysql" user.
 USER mysql
-
 CMD ["/usr/bin/mysqld"]

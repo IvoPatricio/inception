@@ -38,4 +38,4 @@ test:
 	@printf "$(COLOR_YELLOW)\nRunning 4nd test:$(COLOR_RESET)\n"
 	docker exec -it mariadb mysql -u root -p
 
-.PHONY	: all build down re clean fclean test
+.PHONY	: all down re clean fclean test
