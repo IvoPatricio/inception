@@ -7,6 +7,11 @@ ENV PHP=php8 \
 
 RUN apk update && apk add --no-cache mariadb mariadb-client
 
+#Disables the host cache
+#Disables DNS host name
+#Binds the MariaDB server to all available network
+#Tee writes it to a file
+#Replaces networking settings allowing network connections to the MariaDB
 RUN mkdir /var/run/mysqld; \
     chmod 777 /var/run/mysqld; \
     { echo '[mysqld]'; \
@@ -23,4 +28,4 @@ EXPOSE 3306
 
 USER mysql
 
-CMD ["/usr/bin/mysqld", "--skip-log-error"]
+CMD ["/usr/bin/mysqld"]
