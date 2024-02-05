@@ -1,8 +1,9 @@
 FROM alpine:3.16
 
-ARG MYSQL_NAME \
-    MYSQL_USER \
-    MYSQL_NAME
+ENV PHP=php8 \
+    MYSQL_NAME=${MYSQL_NAME} \
+    MYSQL_USER=${MYSQL_USER} \
+    MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
 RUN apk update && apk add --no-cache mariadb mariadb-client
 
@@ -19,10 +20,6 @@ RUN mkdir /var/run/mysqld; \
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
 
 EXPOSE 3306
-
-COPY requirements/mariadb/conf/create_db.sh .
-
-RUN sh create_db.sh && rm create_db.sh
 
 USER mysql
 
