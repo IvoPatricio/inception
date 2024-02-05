@@ -1,6 +1,9 @@
 version: '3'
 
 #context path of the build
+#mounting local directories inside nginx container &
+#mounting toolls: to /etc/nginx/ssl/ with custom ssl configs
+#mounting wp-volume
 services:
   nginx:
     container_name: nginx
