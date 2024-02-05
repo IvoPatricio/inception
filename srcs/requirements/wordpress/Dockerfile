@@ -18,7 +18,6 @@ RUN apk update && apk upgrade && apk add --no-cache \
     ${PHP}-openssl \
     ${PHP}-xml \
     ${PHP}-zip \
-    ${PHP}-redis \
     wget \
     unzip && \
     sed -i "s|listen = 127.0.0.1:9000|listen = 9000|g" \

@@ -8,13 +8,9 @@ all:
 	@printf "$(COLOR_YELLOW)\nRunning make all$(COLOR_RESET)\n"
 	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} up -d
 
-build:
-	@printf "$(COLOR_YELLOW)\nRunning build$(COLOR_RESET)\n"
-	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} -d --build
-
 down:
 	@printf "$(COLOR_YELLOW)\nRunning down$(COLOR_RESET)\n"
-	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path}  down
+	@docker-compose -f ./srcs/docker-compose.yml --env-file ${env_path} down
 
 re: down
 	@printf "$(COLOR_YELLOW)\nRunning re$(COLOR_RESET)\n"
@@ -32,20 +28,14 @@ fclean:
 	@docker network prune --force
 	@docker volume prune --force
 
-test1: 
-	@printf "$(COLOR_YELLOW)\nRunning 1sd test$(COLOR_RESET)\n"
-	docker exec -it wordpress ps aux | grep 'php'
-
-test2:
-	@printf "$(COLOR_YELLOW)\nRunning 2nd test:$(COLOR_RESET)\n"
+test:
+	@printf "$(COLOR_YELLOW)\nRunning 1sd test: Showing dockers$(COLOR_RESET)\n"
+	docker ps
+	@printf "$(COLOR_YELLOW)\nRunning 2nd test: PhP Version$(COLOR_RESET)\n"
 	docker exec -it wordpress php -v
-
-test3:
-	@printf "$(COLOR_YELLOW)\nRunning 3rd test:$(COLOR_RESET)\n"
+	@printf "$(COLOR_YELLOW)\nRunning 3rd test: PhP Packages$(COLOR_RESET)\n"
 	docker exec -it wordpress php -m
+	@printf "$(COLOR_YELLOW)\nRunning 4nd test:$(COLOR_RESET)\n"
+	docker exec -it mariadb mysql -u root -p
 
-test-all: test1 test2 test3
-
-.PHONY	: all build down re clean fclean test-all
-
-#docker exec -it wordpress ps aux | grep 'php' &&  docker exec -it wordpress php -v && docker exec -it wordpress php -m
+.PHONY	: all build down re clean fclean test
